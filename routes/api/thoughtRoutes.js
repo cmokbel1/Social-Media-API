@@ -29,6 +29,7 @@ router.put('/:id', async function (req, res) {
 // //delete a thought
 router.delete('/:id', async function (req, res) {
   await Thought.findByIdAndDelete(req.params.id);
+  await User.findByIdAndUpdate(req.body.user, {$pull: { thoughts: req.params.id } })
   res.sendStatus(200);
 });
 
