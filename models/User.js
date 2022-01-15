@@ -26,12 +26,12 @@ const userSchema = new Schema({
   // user thoughts reference thought model
   thoughts: [{
     type: Schema.Types.ObjectId,
-    ref: 'thought'
+    ref: 'Thought'
   }],
   // user friends reference other users
   friends: [{
     type: Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'User'
   }],
   {
     // virtuals allow mongoose to call certain properties without actually saving them to the mongoDB
@@ -40,6 +40,10 @@ const userSchema = new Schema({
     },
     id: false
   }
+});
+
+User.virtual('friendCount').get(function() {
+  return this.friends.length
 });
 
 const User = model('User', userSchema );
