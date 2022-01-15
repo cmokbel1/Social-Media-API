@@ -17,7 +17,7 @@ const reactionSchema = new Schema({
     ref: 'Thought',
     required: true
   }
-} {timestamps : true});
+}, { timestamps: true });
 
 const Reaction = model('Reaction', reactionSchema);
 
