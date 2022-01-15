@@ -19,20 +19,21 @@ const thoughtSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Reaction'
   }],
+},
   {
     // virtuals allow mongoose to call certain properties without actually saving them to the mongoDB
-    toJSON {
+    toJSON: {
       virtuals: true
     },
     id: false
-  }
+  },
 // time stamps allow thoughts to be stamped with date and time / may need conversion to local time
-}, { timestamps: true });
+ { timestamps: true });
 
 thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length
 });
 
-const Thought = model('Thought', userSchema);
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;

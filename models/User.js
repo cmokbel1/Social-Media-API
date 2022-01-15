@@ -33,19 +33,20 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
+},
   {
     // virtuals allow mongoose to call certain properties without actually saving them to the mongoDB
     toJSON: {
-      virtuals: true
+      virtuals: true,
     },
     id: false
-  }
-});
+  });
 
-User.virtual('friendCount').get(function() {
-  return this.friends.length
-});
 
 const User = model('User', userSchema );
+
+userSchema.virtual('friendCount').get(function () {
+  return this.friends.length
+});
 
 module.exports = User;

@@ -8,7 +8,7 @@ router.use('/api', apiRoutes)
 
 // error catch for wrong route
 router.use((req,res) => {
-  return res.send('Wong Route!');
+  return res.send('Wrong Route!');
 });
 
 //export router
